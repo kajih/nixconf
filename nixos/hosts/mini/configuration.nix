@@ -16,14 +16,14 @@
       self.nixosModules.general
       self.nixosModules.desktop
 
-      self.nixosModules.discord
-      self.nixosModules.gimp
-      self.nixosModules.telegram
-      self.nixosModules.youtube-music
+#      self.nixosModules.discord
+#      self.nixosModules.gimp
+#      self.nixosModules.telegram
+#      self.nixosModules.youtube-music
 
-      self.nixosModules.gaming
+#      self.nixosModules.gaming
 
-      self.nixosModules.powersave
+#      self.nixosModules.powersave
     ];
 
     boot.loader.systemd-boot.enable = true;
@@ -33,8 +33,8 @@
 
     networking.networkmanager.enable = true;
 
-    programs.niri.enable = true;
-    programs.niri.package = self.packages.${pkgs.system}.niri;
+#    programs.niri.enable = true;
+#    programs.niri.package = self.packages.${pkgs.system}.niri;
 
     boot.kernelPackages = pkgs.linuxPackages_latest;
 
