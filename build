@@ -1,1 +1,4 @@
+sudo chown -R kajih:users .
+# sudo nixos-rebuild switch --option abort-on-warn true --flake .#hyperv
 sudo nixos-rebuild switch --flake .#hyperv
+

@@ -62,10 +62,9 @@
       bluetooth.enable = true;
       bluetooth.powerOnBoot = true;
 
-      opengl = {
-        enable = true;
-        driSupport32Bit = false;
-      };
+      graphics.enable = true;
+      graphics.enable32Bit = true;
+
     };
   };
 }
