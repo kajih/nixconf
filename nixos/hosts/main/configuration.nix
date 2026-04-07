@@ -24,7 +24,7 @@
 
       self.nixosModules.gaming
       self.nixosModules.vr
-      self.nixosModules.powersave
+      # self.nixosModules.powersave
 
       # disko
       inputs.disko.nixosModules.disko

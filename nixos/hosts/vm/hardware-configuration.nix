@@ -2,7 +2,7 @@
   flake.nixosModules.hostVmHardware = {
     config,
     lib,
-    pkg,
+    pkgs,
     modulesPath,
     ...
   }: {

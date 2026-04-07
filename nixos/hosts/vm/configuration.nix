@@ -38,6 +38,10 @@
     #    programs.niri.package = self.packages.${pkgs.system}.niri;
 
     services.openssh.enable = true;
+    services.openssh.settings = {
+      # PasswordAuthentication = false;
+      # PermitRootLogin = "no";
+    };
 
     boot.kernelPackages = pkgs.linuxPackages_latest;
     system.stateVersion = "25.11";

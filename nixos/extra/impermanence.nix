@@ -41,7 +41,6 @@
               "/var/lib/nixos"
               "/var/lib/systemd/coredump"
               "/etc/NetworkManager/system-connections"
-              "/tmp"
 
               "/var/lib/zerotier-one"
               # {
@@ -55,7 +54,6 @@
           files =
             [
               "/etc/machine-id"
-              "/etc/lact/config.yaml"
               {
                 file = "/var/keys/secret_file";
                 parentDirectory = {mode = "u=rwx,g=,o=";};
