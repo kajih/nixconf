@@ -2,8 +2,11 @@
   flake.nixosModules.general = {
     pkgs,
     config,
+    lib,
     ...
-  }: {
+  }: let
+    neovim = self.packages.${pkgs.stdenv.hostPlatform.system}.neovim;
+  in {
     imports = [
       self.nixosModules.extra_hjem
       self.nixosModules.gtk
@@ -20,14 +23,20 @@
       # initialPassword = "12345";
     };
 
-    persistance.data.directories = [
-      "nixconf"
+    environment.systemPackages = [ neovim ];
+    environment.variables.EDITOR = lib.getExe neovim;
+    environment.shellAliases = {
+      vi  = "nvim";
+      vim = "nvim";
+    };
 
+    persistance.data.directories = [
+      ".ssh"
+      "nixconf"
+      "src"
       "Videos"
       "Documents"
       "Projects"
-
-      ".ssh"
     ];
 
     # todo: remove
