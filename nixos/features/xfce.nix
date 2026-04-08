@@ -11,9 +11,9 @@
 
     # Environment packages specific to XFCE
     environment.systemPackages = with pkgs; [
-      xfce.xfce4-pulseaudio-plugin
-      xfce.xfce4-whiskermenu-plugin
-      xfce.xfdashboard
+      xfce4-pulseaudio-plugin
+      xfce4-whiskermenu-plugin
+      xfdashboard
     ];
   };
 }
