@@ -1,14 +1,44 @@
-{self, ...}: {
+{self, inputs, lib, ...}: {
+  perSystem = {
+    pkgs,
+    self',
+    ...
+  }: {
+    # Desktop wrapper
+    packages.desktop =
+      (inputs.wrappers.wrapperModules.niri.apply ({config, ...}: {
+        inherit pkgs;
+        imports = [self.wrappersModules.niri];
+        terminal = lib.getExe self'.packages.terminal;
+        env = {
+          EDITOR = lib.getExe self'.packages.neovimDynamic;
+        };
+      })).wrapper;
+
+    # Terminal wrapper
+    packages.terminal =
+      (inputs.wrappers.wrapperModules.kitty.apply {
+        inherit pkgs;
+        imports = [self.wrappersModules.kitty];
+      }).wrapper;
+
+    packages.nix-check-bin = pkgs.writeShellApplication {
+      name = "nix-check-bin";
+      text = ''
+        $EDITOR "$(nix build "$1" --no-link --print-out-paths)/bin"
+      '';
+    };
+  };
+
   flake.nixosModules.general = {
     pkgs,
     config,
     lib,
     ...
   }: let
-    neovim = self.packages.${pkgs.stdenv.hostPlatform.system}.neovim;
+    sysPkgs = self.packages.${pkgs.stdenv.hostPlatform.system};
   in {
     imports = [
-      self.nixosModules.extra_hjem
       self.nixosModules.gtk
       self.nixosModules.nix
     ];
@@ -17,18 +47,15 @@
       isNormalUser = true;
       description = "${config.preferences.user.name}'s account";
       extraGroups = ["wheel" "networkmanager"];
-      shell = self.packages.${pkgs.stdenv.hostPlatform.system}.environment;
+      shell = pkgs.fish;
 
       hashedPasswordFile = "/persist/passwd";
       # initialPassword = "12345";
     };
 
-    environment.systemPackages = [ neovim ];
-    environment.variables.EDITOR = lib.getExe neovim;
-    environment.shellAliases = {
-      vi  = "nvim";
-      vim = "nvim";
-    };
+    programs.fish.enable = true;
+
+
 
     persistance.data.directories = [
       ".ssh"

@@ -13,6 +13,7 @@
 
   flake.nixosModules.hostVm = {pkgs, ...}: {
     imports = [
+      self.nixosModules.coresys
       self.nixosModules.base
       self.nixosModules.general
       self.nixosModules.desktop

@@ -27,6 +27,8 @@
       alejandra
       manix
       nix-inspect
+
+      sysPkgs.nh
     ];
   };
 }
