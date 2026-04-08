@@ -1,23 +1,14 @@
 {self, ...}: {
-  flake.nixosModules.desktop = {pkgs, sysPkgs, ...}: {
+  flake.nixosModules.desktop = {pkgs, ...}: {
     imports = [
-      self.nixosModules.gtk
-
-      self.nixosModules.pipewire
       self.nixosModules.firefox
       self.nixosModules.chromium
     ];
 
-    # programs.niri.enable = true;
-    # programs.niri.package = sysPkgs.niri;
-
-    # preferences.autostart = [sysPkgs.quickshellWrapped];
-    preferences.autostart = [sysPkgs.noctalia-shell];
-
-    environment.systemPackages = [
-      sysPkgs.terminal
-      pkgs.pcmanfm
-      sysPkgs.noctalia-shell
+    # Display-server agnostic GUI tools
+    environment.systemPackages = with pkgs; [
+      kitty
+      alacritty
     ];
 
     fonts.packages = with pkgs; [
@@ -32,18 +23,6 @@
       serif = ["Ubuntu Sans"];
       sansSerif = ["Ubuntu Sans"];
       monospace = ["JetBrainsMono Nerd Font"];
-    };
-
-    security.polkit.enable = true;
-
-    hardware = {
-      enableAllFirmware = true;
-
-      bluetooth.enable = true;
-      bluetooth.powerOnBoot = true;
-
-      graphics.enable = true;
-      graphics.enable32Bit = true;
     };
   };
 }

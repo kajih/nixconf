@@ -3,6 +3,10 @@
     # Enable the X11 windowing system
     services.xserver.enable = true;
 
+    # Swedish keyboard layout
+    services.xserver.xkb.layout = "se";
+    services.xserver.xkb.variant = "";
+
     # Enable the XFCE Desktop Environment
     services.xserver.desktopManager.xfce.enable = true;
 
