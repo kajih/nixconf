@@ -8,7 +8,7 @@
 
     # Optional but recommended additions for a polished XFCE experience
     # services.xserver.displayManager.lightdm.enable = true;
-    
+
     # Environment packages specific to XFCE
     environment.systemPackages = with pkgs; [
       xfce.xfce4-pulseaudio-plugin

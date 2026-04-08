@@ -1,4 +1,9 @@
-{self, inputs, lib, ...}: {
+{
+  self,
+  inputs,
+  lib,
+  ...
+}: {
   perSystem = {
     pkgs,
     self',
@@ -35,8 +40,7 @@
     config,
     lib,
     ...
-  }:
-   {
+  }: {
     imports = [
       self.nixosModules.gtk
       self.nixosModules.nix
@@ -53,8 +57,6 @@
     };
 
     programs.fish.enable = true;
-
-
 
     persistance.data.directories = [
       ".ssh"

@@ -36,7 +36,6 @@
       monospace = ["JetBrainsMono Nerd Font"];
     };
 
-
     security.polkit.enable = true;
 
     hardware = {
@@ -47,7 +46,6 @@
 
       graphics.enable = true;
       graphics.enable32Bit = true;
-
     };
   };
 }

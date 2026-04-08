@@ -1,5 +1,9 @@
 {self, ...}: {
-  flake.nixosModules.coresys = {pkgs, lib, ...}: let
+  flake.nixosModules.coresys = {
+    pkgs,
+    lib,
+    ...
+  }: let
     sysPkgs = self.packages.${pkgs.stdenv.hostPlatform.system};
   in {
     time.timeZone = "Europe/Stockholm";
@@ -67,7 +71,7 @@
       (pkgs.writeShellScriptBin "vi" ''exec nvim "$@"'')
       (pkgs.writeShellScriptBin "vim" ''exec nvim "$@"'')
     ];
-    
+
     environment.variables.EDITOR = lib.getExe sysPkgs.neovimDynamic;
   };
 }
