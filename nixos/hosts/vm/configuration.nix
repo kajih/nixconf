@@ -17,6 +17,7 @@
       self.nixosModules.base
       self.nixosModules.general
       self.nixosModules.desktop
+      self.nixosModules.xfce
 
       #      self.nixosModules.discord
       #      self.nixosModules.gimp

@@ -6,6 +6,8 @@
   }: let
     sysPkgs = self.packages.${pkgs.stdenv.hostPlatform.system};
   in {
+    _module.args.sysPkgs = sysPkgs;
+
     time.timeZone = "Europe/Stockholm";
     i18n.defaultLocale = "en_GB.UTF-8";
     i18n.extraLocaleSettings = {

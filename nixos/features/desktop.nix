@@ -1,7 +1,5 @@
 {self, ...}: {
-  flake.nixosModules.desktop = {pkgs, ...}: let
-    selfpkgs = self.packages."${pkgs.stdenv.hostPlatform.system}";
-  in {
+  flake.nixosModules.desktop = {pkgs, sysPkgs, ...}: {
     imports = [
       self.nixosModules.gtk
 
@@ -11,15 +9,15 @@
     ];
 
     # programs.niri.enable = true;
-    # programs.niri.package = selfpkgs.niri;
+    # programs.niri.package = sysPkgs.niri;
 
-    # preferences.autostart = [selfpkgs.quickshellWrapped];
-    preferences.autostart = [selfpkgs.noctalia-shell];
+    # preferences.autostart = [sysPkgs.quickshellWrapped];
+    preferences.autostart = [sysPkgs.noctalia-shell];
 
     environment.systemPackages = [
-      selfpkgs.terminal
+      sysPkgs.terminal
       pkgs.pcmanfm
-      selfpkgs.noctalia-shell
+      sysPkgs.noctalia-shell
     ];
 
     fonts.packages = with pkgs; [

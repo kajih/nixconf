@@ -3,9 +3,7 @@
   inputs,
   ...
 }: {
-  flake.nixosModules.nix = {pkgs, ...}: let
-    sysPkgs = self.packages.${pkgs.stdenv.hostPlatform.system};
-  in {
+  flake.nixosModules.nix = {pkgs, sysPkgs, ...}: {
     imports = [
       inputs.nix-index-database.nixosModules.nix-index
     ];

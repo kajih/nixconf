@@ -6,6 +6,7 @@
   flake.nixosModules.gaming = {
     pkgs,
     lib,
+    sysPkgs,
     ...
   }: {
     hardware.graphics.enable = lib.mkDefault true;
@@ -57,7 +58,7 @@
 
       lsfg-vk
       lsfg-vk-ui
-      self.packages.${pkgs.stdenv.hostPlatform.system}.wow-launcher
+      sysPkgs.wow-launcher
     ];
 
     services.zerotierone.enable = true;
